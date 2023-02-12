@@ -1,0 +1,78 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="360" d:DesignHeight="360" CanResize="False"
+        Width="360" Height="360"
+        xmlns:sapphireLauncherCore="clr-namespace:SapphireLauncherCore"
+        x:Class="SapphireLauncherCore.ConfigWindow"
+        Title="Configuration">
+
+	<Window.Styles>
+		<Style Selector="Panel.Main">
+			<Setter Property="Background">
+				<LinearGradientBrush StartPoint="0%,0%" EndPoint="0%,100%">
+					<GradientStop Offset="0.5" Color="Black" />
+					<GradientStop Offset="1" Color="#10304f" />
+				</LinearGradientBrush>
+			</Setter>
+		</Style>
+		<Style Selector="TextBox">
+			<Setter Property="Margin" Value="8" />
+		</Style>
+		<Style Selector="TextBlock.Label">
+			<Setter Property="Foreground" Value="White" />
+			<Setter Property="HorizontalAlignment" Value="Center" />
+			<Setter Property="VerticalAlignment" Value="Center" />
+			<Setter Property="Margin" Value="8,0,0,0" />
+		</Style>
+	</Window.Styles>
+
+	<Design.DataContext>
+		<sapphireLauncherCore:Config />
+	</Design.DataContext>
+
+	<Panel Classes="Main">
+		<Grid ShowGridLines="False" RowDefinitions="*,64">
+			<Grid Grid.Row="0" ShowGridLines="False" RowDefinitions="*,*,*,*,*,*">
+				<DockPanel Grid.Row="0" LastChildFill="True">
+					<TextBlock Classes="Label">Game Executable:</TextBlock>
+					<TextBox Watermark="/home/user/anime-game/game/game_dx11.exe" Text="{Binding GamePath, Mode=TwoWay}"/>
+				</DockPanel>
+				<DockPanel Grid.Row="1" LastChildFill="True">
+					<TextBlock Classes="Label">Wine Executable:</TextBlock>
+					<TextBox Watermark="/home/user/wine/bin/wine64" Text="{Binding WinePath, Mode=TwoWay}" />
+				</DockPanel>
+				<DockPanel Grid.Row="2" LastChildFill="True">
+					<TextBlock Classes="Label">Wine Prefix:</TextBlock>
+					<TextBox Watermark="/home/user/.wine" Text="{Binding WinePrefix, Mode=TwoWay}" />
+				</DockPanel>
+				<DockPanel Grid.Row="3" LastChildFill="True">
+					<TextBlock Classes="Label">Wine Sync:</TextBlock>
+					<ComboBox SelectedIndex="{Binding SyncMode, Mode=TwoWay}"
+					          VerticalAlignment="Center" HorizontalAlignment="Center">
+						<ComboBoxItem>None</ComboBoxItem>
+						<ComboBoxItem>ESync</ComboBoxItem>
+						<ComboBoxItem>FSync</ComboBoxItem>
+					</ComboBox>
+				</DockPanel>
+				<DockPanel Grid.Row="4" LastChildFill="True">
+					<TextBlock Classes="Label">Login URL:</TextBlock>
+					<TextBox Watermark="0.0.0.0:80" Text="{Binding LoginURL, Mode=TwoWay}" />
+				</DockPanel>
+				<DockPanel Grid.Row="5" LastChildFill="True">
+					<TextBlock Classes="Label">Additional Args:</TextBlock>
+					<TextBox Watermark="DEV.Arg=&quot;...&quot;" Text="{Binding AdditionalArgs, Mode=TwoWay}" />
+				</DockPanel>
+			</Grid>
+			<StackPanel Grid.Row="1" HorizontalAlignment="Center" Orientation="Horizontal" Spacing="8">
+				<Button VerticalAlignment="Center" HorizontalAlignment="Center" Click="Save">
+					<TextBlock Text="Save" />
+				</Button>
+				<Button VerticalAlignment="Center" HorizontalAlignment="Center" Click="Close">
+					<TextBlock Text="Cancel" />
+				</Button>
+			</StackPanel>
+		</Grid>
+	</Panel>
+</Window>

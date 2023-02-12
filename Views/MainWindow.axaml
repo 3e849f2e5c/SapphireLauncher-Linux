@@ -1,0 +1,94 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sapphireLauncherCore="clr-namespace:SapphireLauncherCore"
+        mc:Ignorable="d" Width="1024" Height="576" CanResize="False"
+        x:Class="SapphireLauncherCore.MainWindow"
+        Title="Sapphire Launcher">
+
+	<Design.DataContext>
+		<sapphireLauncherCore:Config />
+	</Design.DataContext>
+
+	<Window.Styles>
+		<Style Selector="Panel.Main">
+			<Setter Property="Background">
+				<LinearGradientBrush StartPoint="0%,0%" EndPoint="0%,100%">
+					<GradientStop Offset="0.5" Color="Black" />
+					<GradientStop Offset="1" Color="#10304f" />
+				</LinearGradientBrush>
+			</Setter>
+		</Style>
+		<Style Selector="Grid.BottomGradient">
+			<Setter Property="Background">
+				<LinearGradientBrush StartPoint="0%,0%" EndPoint="0%,100%">
+					<GradientStop Offset="0" Color="#737373" />
+					<GradientStop Offset="0.5" Color="#202020" />
+					<GradientStop Offset="0.5" Color="#000000" />
+					<GradientStop Offset="1" Color="#090909" />
+				</LinearGradientBrush>
+			</Setter>
+		</Style>
+	</Window.Styles>
+
+	<Panel Classes="Main">
+		<Grid ShowGridLines="False" RowDefinitions="64,*,64">
+			<Grid ShowGridLines="False" Grid.Row="1" Grid.Column="0" ColumnDefinitions="7*,2.5*,0.5*">
+				<!--<StackPanel Grid.Column="0" Orientation="Vertical" Spacing="4">
+					<Grid ColumnDefinitions="Auto,*,Auto"
+					      MaxWidth="660"
+					      HorizontalAlignment="Stretch" Margin="0 16 0 0">
+						<Button Name="left" Grid.Column="0" VerticalAlignment="Center" Padding="10,20" Margin="4">
+							<Path Data="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" Fill="White"/>
+						</Button>
+						<Carousel Name="carousel" Grid.Column="1">
+							<Carousel.PageTransition>
+								<PageSlide Duration="0.25" Orientation="Horizontal" />
+							</Carousel.PageTransition>
+							<Image Source="../img/1.png"/>
+							<Image Source="../img/2.png"/>
+							<Image Source="../img/3.png"/>
+						</Carousel>
+						<Button Name="right" Grid.Column="2" VerticalAlignment="Center" Padding="10,20" Margin="4">
+							<Path Data="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z" Fill="White"/>
+						</Button>
+					</Grid>
+				</StackPanel>-->
+				<Grid ShowGridLines="False" Grid.Column="1" RowDefinitions="100,*">
+					<StackPanel Grid.Row="1">
+						<TextBox UseFloatingWatermark="True" Watermark="Username"
+						         Text="{Binding Username, Mode=TwoWay}" />
+						<TextBox UseFloatingWatermark="True" PasswordChar="*" Watermark="Password"
+						         Text="{Binding Password, Mode=TwoWay}" />
+						<StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Spacing="8">
+							<Button ToolTip.Tip="Login" Click="Login" Width="100" Cursor="Hand"
+							        Margin="0,10,0,0" HorizontalContentAlignment="Center">
+								Login
+							</Button>
+							<Button ToolTip.Tip="Register" Click="Register" Width="100" Cursor="Hand"
+							        Margin="0,10,0,0" HorizontalContentAlignment="Center">
+								Register
+							</Button>
+						</StackPanel>
+					</StackPanel>
+					<Image Grid.Row="0" Source="../Images/sapphire_logo.png" Margin="0,0,0,8"></Image>
+				</Grid>
+			</Grid>
+			<Grid Grid.Row="2" ShowGridLines="False" ColumnDefinitions="2*,6*,2*" Classes="BottomGradient">
+				<Grid Grid.Column="1" ColumnDefinitions="2*,2*,2*,2*,2*">
+				</Grid>
+				<ComboBox Grid.Column="0" SelectedIndex="{Binding Language, Mode=TwoWay}"
+				          VerticalAlignment="Center" HorizontalAlignment="Center" ToolTip.Tip="Language">
+					<ComboBoxItem>Japanese</ComboBoxItem>
+					<ComboBoxItem>English</ComboBoxItem>
+					<ComboBoxItem>German</ComboBoxItem>
+					<ComboBoxItem>French</ComboBoxItem>
+				</ComboBox>
+				<Button Grid.Column="2" Width="64" Height="32" HorizontalAlignment="Center" Cursor="Hand" Click="OpenConfig">
+					Config
+				</Button>
+			</Grid>
+		</Grid>
+	</Panel>
+</Window>
