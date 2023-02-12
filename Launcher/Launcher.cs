@@ -32,6 +32,8 @@ internal static class Launcher
 
         LauncherResponse request = await SendRequest($"{Config.Instance.LoginURL}/sapphire-api/lobby/login", send);
 
+        Config.Instance.SaveConfig();
+
         return OnLoginReceived(request.Message);
     }
 
@@ -97,8 +99,6 @@ internal static class Launcher
         {
             return new LauncherResponse(LauncherResponseType.Error, $"API responded with invalid message: {jsonObject}");
         }
-
-        Config.Instance.SaveConfig();
 
         Game.LaunchGame(
             sID.ToString(),

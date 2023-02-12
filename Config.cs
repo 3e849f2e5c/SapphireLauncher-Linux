@@ -28,6 +28,8 @@ internal sealed class Config
     public string Password { get; private set; } = string.Empty;
     public Language Language { get; private set; } = Language.English;
 
+    public static bool SaveCredentials = true;
+
     public bool IsInitialized =>
         !string.IsNullOrWhiteSpace(GamePath) &&
         !string.IsNullOrWhiteSpace(WinePath) &&
@@ -61,8 +63,11 @@ internal sealed class Config
         LoginURL = GetAttribute(nameof(LoginURL), string.Empty);
         AdditionalArgs = GetAttribute(nameof(AdditionalArgs), string.Empty);
         Username = GetAttribute(nameof(Username), string.Empty);
-        Password = GetAttribute(nameof(Password), string.Empty);
-        Language = GetAttribute(nameof(Language), Language.English);
+        if (SaveCredentials)
+        {
+            Password = GetAttribute(nameof(Password), string.Empty);
+            Language = GetAttribute(nameof(Language), Language.English);
+        }
 
         T GetAttribute<T>(string name, T defaultValue)
         {
@@ -101,8 +106,11 @@ internal sealed class Config
         AddField(nameof(SyncMode), SyncMode);
         AddField(nameof(LoginURL), LoginURL);
         AddField(nameof(AdditionalArgs), AdditionalArgs);
-        AddField(nameof(Username), Username);
-        AddField(nameof(Password), Password);
+        if (SaveCredentials)
+        {
+            AddField(nameof(Username), Username);
+            AddField(nameof(Password), Password);
+        }
         AddField(nameof(Language), Language);
 
         XmlWriterSettings settings = new XmlWriterSettings
