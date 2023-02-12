@@ -80,6 +80,6 @@ Running winecfg should have populated the wine prefix with some files now. Copy 
 After configuring the launcher and running the game you might encounter an issue where after pressing start in the main menu the game will be stuck on a black screen. This is because the game is trying to play the opening cutscene, but it's not working because it's using a proprietary video format.
 
 A simple fix for this is to head over to
-`~/.wineprefix_xiv/drive_c/users/aneko/Documents/My Games/FINAL FANTASY XIV - A Realm Reborn/` folder and finding the `FFXIV_BOOT.cfg` file. Open it in a text editor and change the `CutsceneMovieOpening` value to `1` to prevent the game from playing the opening cutscene. 
+`~/.wineprefix_xiv/drive_c/users/$USER/Documents/My Games/FINAL FANTASY XIV - A Realm Reborn/` folder and finding the `FFXIV_BOOT.cfg` file. Open it in a text editor and change the `CutsceneMovieOpening` value to `1` to prevent the game from playing the opening cutscene. 
 
 Save the file and try running the game again.
